@@ -1,0 +1,240 @@
+Program.Sub.ScreenSU.Start
+Gui.F_QA_All_Inv..Create
+Gui.F_QA_All_Inv..Caption("QA Requirements For All Inventory")
+Gui.F_QA_All_Inv..Size(9030,10695)
+Gui.F_QA_All_Inv..MinX(0)
+Gui.F_QA_All_Inv..MinY(0)
+Gui.F_QA_All_Inv..Position(0,0)
+Gui.F_QA_All_Inv..BackColor(-2147483633)
+Gui.F_QA_All_Inv..MaxButton(False)
+Gui.F_QA_All_Inv..MinButton(False)
+Gui.F_QA_All_Inv..MousePointer(0)
+Gui.F_QA_All_Inv..Event(UnLoad,F_QA_All_Inv_UnLoad)
+Gui.F_QA_All_Inv.GsGcQA_Req_All.Create(GsGridControl)
+Gui.F_QA_All_Inv.GsGcQA_Req_All.Size(8595,9420)
+Gui.F_QA_All_Inv.GsGcQA_Req_All.Position(105,600)
+Gui.F_QA_All_Inv.cmdUpdate.Create(Button)
+Gui.F_QA_All_Inv.cmdUpdate.Size(855,375)
+Gui.F_QA_All_Inv.cmdUpdate.Position(7800,105)
+Gui.F_QA_All_Inv.cmdUpdate.Caption("Update")
+Gui.F_QA_All_Inv.cmdUpdate.FontStyle(True,False,False,False,False)
+Gui.F_QA_All_Inv.cmdUpdate.Event(Click,cmdUpdate_Click)
+Gui.F_QA_All_Inv.lblTitle.Create(Label,"QA Requirements",True,1935,255,0,120,240,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_All_Inv.lblTitle.FontStyle(True,False,False,False,False)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.sQA_List.Declare
+v.Global.sCustomQA.Declare
+v.Global.sFileLocation.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+f.Intrinsic.Control.CallSub(CustomFolderPreCheck)
+v.Local.bIsInGroup.Declare
+f.Global.Security.IsInGroup(v.Caller.User, "QA", v.Caller.CompanyCode, v.Local.bIsInGroup)
+f.Intrinsic.Control.If(v.Local.bIsInGroup)
+	f.Intrinsic.Control.CallSub(loadGV)
+	f.Intrinsic.Control.CallSub(loadGVProperties)
+	gui.F_QA_All_Inv..Show
+f.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+Program.Sub.F_QA_All_Inv_UnLoad.Start
+f.Intrinsic.Control.End
+Program.Sub.F_QA_All_Inv_UnLoad.End
+
+Program.Sub.cmdUpdate_Click.Start
+v.Local.iCnt.Declare
+v.Global.sQA_List.Set("")
+
+
+f.Intrinsic.Control.If(v.DataTable.qaInvAllDT.Exists)
+	f.Data.DataTable.Close("qaInvAllDT")
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("qaInvAllDT", "con", "Select * from GCG_5233_QA_INV", true)
+	f.ODBC.Connection!con.Close
+f.Intrinsic.Control.EndIf
+
+gui.F_QA_All_Inv.cmdUpdate.Enabled(false)
+f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.QA_ReqDT.RowCount--, 1)
+	f.Intrinsic.Control.If(v.DataTable.QA_ReqDT(v.Local.iCnt).Select!FieldVal, =, true)
+		f.Intrinsic.String.Build("{0}{1},", v.Global.sQA_List, v.DataTable.QA_ReqDT(v.Local.iCnt).QA_CODE!FieldValTrim, v.Global.sQA_List)
+	f.Intrinsic.Control.EndIf	
+f.Intrinsic.Control.Next(v.Local.iCnt)
+f.Intrinsic.Control.CallSub(writeDataBase)
+f.Intrinsic.Control.CallSub(writeTxt)
+f.Intrinsic.UI.Msgbox("Inventory QA has been overwritten.")
+gui.F_QA_All_Inv.cmdUpdate.Enabled(true)
+Program.Sub.cmdUpdate_Click.End
+
+Program.Sub.loadGV.Start
+v.Local.sFile.Declare
+v.Local.bExist.Declare
+v.Local.iCnt.Declare
+v.Local.iCnt2.Declare
+v.Local.iUpperBound.Declare
+f.Intrinsic.String.Build("{0}\CUSTOM\GCG_5233\ALLQA.txt",v.Caller.GlobalDir, v.Global.sFileLocation)
+f.Intrinsic.File.Exists(v.Global.sFileLocation, v.Local.bExist)
+
+f.Intrinsic.Control.If(v.Local.bExist)
+	f.Intrinsic.File.File2String(v.Global.sFileLocation, v.Global.sQA_List)
+f.Intrinsic.Control.EndIf
+
+'f.Intrinsic.UI.Msgbox(v.Global.sQA_List)
+f.Intrinsic.Control.Try
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("QA_ReqDT", "con", "Select QA_CODE, TITLE from GCG_5233_QA_REQ order by QA_CODE asc", true)
+		f.Data.DataTable.CreateFromSQL("allInvDT", "con", "Select Part from Inventory_Mstr", true)
+		f.Data.DataTable.CreateFromSQL("qaInvAllDT", "con", "Select * from GCG_5233_QA_INV", true)
+	f.ODBC.Connection!con.Close
+	
+	f.Data.DataTable.AddColumn("QA_ReqDT", "Select", "Boolean", 0)
+	
+	gui.F_QA_All_Inv.GsGcQA_Req_All.AddGridviewFromDatatable("QA_ReqGV", "QA_ReqDT")
+	gui.F_QA_All_Inv.GsGcQA_Req_All.MainView("QA_ReqGV")
+	
+f.Intrinsic.String.SplitCSV(v.Global.sQA_List, v.Local.sFile)
+v.Local.sFile.RedimPreserve(0, v.Local.sFile.UBound)
+
+f.Intrinsic.Math.Sub(v.Local.sFile.UBound, 1, v.Local.iUpperBound)
+f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.QA_ReqDT.RowCount--, 1)
+	f.Intrinsic.Control.For(v.Local.iCnt2, 0, v.Local.iUpperBound, 1)
+		f.Intrinsic.Control.If(v.DataTable.QA_ReqDT(v.Local.iCnt).QA_CODE!FieldValTrim, =, v.Local.sFile(v.Local.iCnt2))
+			f.Data.DataTable.SetValue("QA_ReqDT", v.Local.iCnt, "Select", true)		
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.iCnt2)	
+f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(ErrorMsg, CurrentSub, v.Ambient.CurrentSubroutine)
+f.Intrinsic.Control.EndTry
+Program.Sub.loadGV.End
+
+Program.Sub.loadGVProperties.Start
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "Caption", "QA Requirement")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "Caption", "Description")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "Caption", "Select")
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "HeaderHAlignment", "Center")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "HeaderHAlignment", "Center")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "HeaderHAlignment", "Center")
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "CellHAlignment", "Center")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "CellHAlignment", "Near")
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "CellHAlignment", "Center")
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "HeaderFontBold", true)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "HeaderFontBold", true)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "HeaderFontBold", true)
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "AllowEdit", false)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "AllowEdit", false)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "AllowEdit", true)
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "QA_Code", "ReadOnly", true)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Title", "ReadOnly", true)
+gui.F_QA_All_Inv.GsGcQA_Req_All.SetColumnProperty("QA_ReqGV", "Select", "ReadOnly", false)
+
+gui.F_QA_All_Inv.GsGcQA_Req_All.BestFitColumns("QA_ReqGV")
+Program.Sub.loadGVProperties.End
+
+Program.Sub.writeDataBase.Start
+v.Local.iCnt.Declare
+v.Local.sSQL.Declare
+v.Local.sFilter.Declare
+v.Local.sPart.Declare
+
+f.Intrinsic.Control.Try
+	f.ODBC.Connection!con.OpenCompanyConnection	
+		f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.allInvDT.RowCount--, 1)
+			v.Local.sPart.Set(v.DataTable.allInvDT(v.Local.iCnt).Part!FieldVal)
+			f.Intrinsic.String.Build("Part = '{0}'", v.Local.sPart, v.Local.sFilter)
+			f.Data.DataView.Create("qaInvAllDT", "qaInvAllDV", 22, v.Local.sFilter, "Part ASC")
+				f.Intrinsic.Control.If(v.DataView.qaInvAllDT!qaInvAllDV.RowCount, =, 1)
+					f.Intrinsic.Control.CallSub(customQA, sPartQA, v.DataView.qaInvAllDT!qaInvAllDV(0).QA_REQ!FieldValTrim)
+					f.Intrinsic.String.Build("Update GCG_5233_QA_INV set QA_REQ = '{0}' where part = '{1}'", v.Global.sCustomQA, v.Local.sPart.PSQLFriendly, v.Local.sSQL)
+					f.ODBC.Connection!con.Execute(v.Local.sSQL)
+				
+				f.Intrinsic.Control.ElseIf(v.DataView.qaInvAllDT!qaInvAllDV.RowCount, =, 0)
+					f.Intrinsic.String.Build("Insert into  GCG_5233_QA_INV (part, QA_REQ) Values ('{0}', '{1}')", v.Local.sPart.PSQLFriendly, v.Global.sQA_List, v.Local.sSQL)
+					f.ODBC.Connection!con.Execute(v.Local.sSQL)
+				f.Intrinsic.Control.EndIf
+			f.Data.DataView.Close("qaInvAllDT", "qaInvAllDV")
+		f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.ODBC.Connection!con.Close
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(ErrorMsg, CurrentSub, v.Ambient.CurrentSubroutine)
+f.Intrinsic.Control.EndTry
+Program.Sub.writeDataBase.End
+
+Program.Sub.ErrorMsg.Start
+v.Local.sError.Declare
+'Generic Error message.
+f.Intrinsic.String.Build("Project GCG_5233_PO_Lines.g2u {0}{0}Subroutine: {1}{0}Error: {2} with Description: {3}", v.Ambient.NewLine, v.Args.CurrentSub, v.Ambient.ErrorNumber, v.Ambient.ErrorDescription, v.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+Program.Sub.ErrorMsg.End
+
+Program.Sub.CustomFolderPreCheck.Start
+v.Local.sFolder.Declare
+v.Local.bExist.Declare
+
+'Checks if the Custom Folder Exists
+f.Intrinsic.String.Build("{0}\CUSTOM", v.Caller.GlobalDir, v.Local.sFolder)
+f.Intrinsic.File.DirExists(v.Local.sFolder, v.Local.bExist)
+
+'If the folder doesn't exists, it creates it
+f.Intrinsic.Control.If(v.Local.bExist, =, false)
+	f.Intrinsic.File.CreateDir(v.Local.sFolder)
+f.Intrinsic.Control.EndIf
+
+'Checks if this particutlar project Folder Exists, in this case Training but it should be the ARC project ID
+f.Intrinsic.String.Build("{0}\CUSTOM\GCG_5233",v.Caller.GlobalDir, v.Local.sFolder)
+f.Intrinsic.File.DirExists(v.Local.sFolder, v.Local.bExist)
+
+'If the folder doesn't exists, it creates it
+f.Intrinsic.Control.If(v.Local.bExist, =, false)
+	f.Intrinsic.File.CreateDir(v.Local.sFolder)
+f.Intrinsic.Control.EndIf
+
+
+Program.Sub.CustomFolderPreCheck.End
+
+Program.Sub.writeTxt.Start
+v.Local.bExist.Declare
+
+f.Intrinsic.String.Build("{0}\CUSTOM\GCG_5233\ALLQA.txt",v.Caller.GlobalDir, v.Global.sFileLocation)
+f.Intrinsic.File.Exists(v.Global.sFileLocation, v.Local.bExist)
+
+f.Intrinsic.Control.If(v.Local.bExist)
+	f.Intrinsic.File.DeleteFile(v.Global.sFileLocation)
+	f.Intrinsic.File.String2File(v.Global.sFileLocation, v.Global.sQA_List)
+f.Intrinsic.Control.Else
+	f.Intrinsic.File.String2File(v.Global.sFileLocation, v.Global.sQA_List)
+f.Intrinsic.Control.EndIf
+Program.Sub.writeTxt.End
+
+Program.Sub.customQA.Start
+v.Local.sQA.Declare
+v.Local.iCnt.Declare
+f.Intrinsic.String.Build("{0},{1}", v.Args.sPartQA, v.Global.sQA_List, v.Local.sQA)
+f.Data.DataTable.CreateFromString("qaDT", v.Local.sQA, "QA_Req", "string", "*!*", ",")
+f.Data.DataView.Create("qaDT", "qaDV")
+f.Data.DataView.ToDataTableDistinct("qaDT", "qaDV", "qaDistinctDT", "QA_Req")
+
+f.Data.DataView.Create("qaDistinctDT", "qaDistinctDV", 22, "QA_REQ <> ''", "QA_Req ASC")
+
+v.Local.sQA.Set("")
+
+f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataView.qaDistinctDT!qaDistinctDV.RowCount--, 1)
+	f.Intrinsic.String.Build("{0}{1},", v.Local.sQA, v.DataView.qaDistinctDT!qaDistinctDV(v.Local.iCnt).QA_Req!FieldValTrim, v.Local.sQA)
+f.Intrinsic.Control.Next(v.Local.iCnt)
+
+v.Global.sCustomQA.Set(v.Local.sQA)
+
+f.Data.DataView.Close("qaDistinctDT", "qaDistinctDV")
+f.Data.DataTable.Close("qaDistinctDT")
+f.Data.DataView.Close("qaDT", "qaDV")
+f.Data.DataTable.Close("qaDT")
+Program.Sub.customQA.End
