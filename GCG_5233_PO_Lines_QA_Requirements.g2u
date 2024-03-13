@@ -1,0 +1,717 @@
+Program.Sub.ScreenSU.Start
+Gui.F_QA_Req..Create
+Gui.F_QA_Req..Caption("Quality Requirements")
+Gui.F_QA_Req..Size(6330,8235)
+Gui.F_QA_Req..MinX(0)
+Gui.F_QA_Req..MinY(0)
+Gui.F_QA_Req..Position(0,0)
+Gui.F_QA_Req..BackColor(-2147483633)
+Gui.F_QA_Req..MousePointer(0)
+Gui.F_QA_Req..Event(UnLoad,F_QA_Req_UnLoad)
+Gui.F_QA_Req..MaxButton(False)
+Gui.F_QA_Req..MinButton(False)
+Gui.F_QA_Req..Sizeable(False)
+Gui.F_QA_Req.GsGcRecAllQAs.Create(GsGridControl)
+Gui.F_QA_Req.GsGcRecAllQAs.Size(5850,6615)
+Gui.F_QA_Req.GsGcRecAllQAs.Position(135,900)
+Gui.F_QA_Req.lblPart.Create(Label,"Part",True,1605,255,0,60,150,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_Req.lblPart.FontStyle(True,False,False,False,False)
+Gui.F_QA_Req.txtPart.Create(TextBox,"",True,1665,300,0,60,390,True,0,"Arial",8,-2147483643,1)
+Gui.F_QA_Req.txtPart.MaxLength(20)
+Gui.F_QA_Req.txtPart.Locked(True)
+Gui.F_QA_Req.lblPO.Create(Label,"Purchase Order",True,1320,255,0,1905,150,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_Req.lblPO.FontStyle(True,False,False,False,False)
+Gui.F_QA_Req.txtPO.Create(TextBox,"",True,1455,300,0,1905,390,True,0,"Arial",8,-2147483643,1)
+Gui.F_QA_Req.txtPO.MaxLength(7)
+Gui.F_QA_Req.txtPO.Locked(True)
+Gui.F_QA_Req.lblPOLineNo.Create(Label,"Seq",True,450,255,0,3555,150,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_Req.lblPOLineNo.FontStyle(True,False,False,False,False)
+Gui.F_QA_Req.txtSeq.Create(TextBox,"",True,330,300,0,3555,390,True,0,"Arial",8,-2147483643,1)
+Gui.F_QA_Req.txtSeq.Locked(True)
+Gui.F_QA_Req.cmdQA_Rec_Save.Create(Button)
+Gui.F_QA_Req.cmdQA_Rec_Save.Size(855,375)
+Gui.F_QA_Req.cmdQA_Rec_Save.Position(5010,345)
+Gui.F_QA_Req.cmdQA_Rec_Save.Caption("Save")
+Gui.F_QA_Req.cmdQA_Rec_Save.Event(Click,cmdQA_Rec_Save_Click)
+Gui.F_QA_Req.cmdQA_Rec_Save.TabStop(True)
+Gui.F_QA_Req.cmdQA_Rec_Save.TabIndex(1)
+Gui.F_QA_Req.cmdQA_Rec_Save.FontStyle(True,False,False,False,False)
+Gui.F_QA_Maintenance..Create
+Gui.F_QA_Maintenance..Size(7665,9630)
+Gui.F_QA_Maintenance..MinX(0)
+Gui.F_QA_Maintenance..MinY(0)
+Gui.F_QA_Maintenance..Position(0,0)
+Gui.F_QA_Maintenance..BackColor(-2147483633)
+Gui.F_QA_Maintenance..MousePointer(0)
+Gui.F_QA_Maintenance..Caption("QA Requirement Maintenance")
+Gui.F_QA_Maintenance..Event(UnLoad,F_QA_Maintenance_UnLoad)
+Gui.F_QA_Maintenance..MaxButton(False)
+Gui.F_QA_Maintenance..MinButton(False)
+Gui.F_QA_Maintenance..Sizeable(False)
+Gui.F_QA_Maintenance.GsGcMtncAllQAs.Create(GsGridControl)
+Gui.F_QA_Maintenance.GsGcMtncAllQAs.Size(7200,7350)
+Gui.F_QA_Maintenance.GsGcMtncAllQAs.Position(120,1530)
+Gui.F_QA_Maintenance.GsGcMtncAllQAs.Event(RowClick,GsGcMtncAllQAs_RowClick)
+Gui.F_QA_Maintenance.cmdMtncSave.Create(Button)
+Gui.F_QA_Maintenance.cmdMtncSave.Size(855,375)
+Gui.F_QA_Maintenance.cmdMtncSave.Position(6435,1110)
+Gui.F_QA_Maintenance.cmdMtncSave.Caption("Save")
+Gui.F_QA_Maintenance.cmdMtncSave.Event(Click,cmdMtncSave_Click)
+Gui.F_QA_Maintenance.cmdMtncSave.DefaultValue("")
+Gui.F_QA_Maintenance.cmdMtncSave.Enabled(False)
+Gui.F_QA_Maintenance.cmdMtncDelete.Create(Button)
+Gui.F_QA_Maintenance.cmdMtncDelete.Size(855,375)
+Gui.F_QA_Maintenance.cmdMtncDelete.Position(4605,1110)
+Gui.F_QA_Maintenance.cmdMtncDelete.Caption("Delete")
+Gui.F_QA_Maintenance.cmdMtncDelete.Event(Click,cmdMtncDelete_Click)
+Gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+Gui.F_QA_Maintenance.frameInput.Create(Frame)
+Gui.F_QA_Maintenance.frameInput.Size(7185,960)
+Gui.F_QA_Maintenance.frameInput.Position(120,90)
+Gui.F_QA_Maintenance.lblMtncQA_Code.Create(Label,"QA Code",True,930,255,0,165,330,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_Maintenance.lblMtncQA_Code.Parent("frameInput")
+Gui.F_QA_Maintenance.lblMtncQA_Code.FontStyle(True,False,False,False,False)
+Gui.F_QA_Maintenance.txtMtncQA_Code.Create(TextBox,"",True,885,300,0,165,555,True,0,"Arial",8,-2147483643,1)
+Gui.F_QA_Maintenance.txtMtncQA_Code.Parent("frameInput")
+Gui.F_QA_Maintenance.lblMtncTitle.Create(Label,"Title",True,1935,255,0,1230,330,True,0,"Arial",8,-2147483633,0)
+Gui.F_QA_Maintenance.lblMtncTitle.Parent("frameInput")
+Gui.F_QA_Maintenance.lblMtncTitle.FontStyle(True,False,False,False,False)
+Gui.F_QA_Maintenance.txtMtncTitle.Create(TextBox,"",True,3495,300,0,1230,555,True,0,"Arial",8,-2147483643,1)
+Gui.F_QA_Maintenance.txtMtncTitle.Parent("frameInput")
+Gui.F_QA_Maintenance.chkMtncReqDoc.Create(CheckBox)
+Gui.F_QA_Maintenance.chkMtncReqDoc.Size(2265,360)
+Gui.F_QA_Maintenance.chkMtncReqDoc.Position(4815,525)
+Gui.F_QA_Maintenance.chkMtncReqDoc.Caption("Requires Documentation")
+Gui.F_QA_Maintenance.chkMtncReqDoc.Parent("frameInput")
+Gui.F_QA_Maintenance.cmdMtncNew.Create(Button)
+Gui.F_QA_Maintenance.cmdMtncNew.Size(855,375)
+Gui.F_QA_Maintenance.cmdMtncNew.Position(5535,1110)
+Gui.F_QA_Maintenance.cmdMtncNew.Caption("New")
+Gui.F_QA_Maintenance.cmdMtncNew.Event(Click,cmdMtncNew_Click)
+Gui.F_QA_Maintenance.cmdMtncNew.FontStyle(True,False,False,False,False)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+'GCG_5233_PO_Lines_QA_Requirements
+'Alejandro Anazco V.
+v.Global.iStatus.Declare
+'0 = no changes
+'1 = New QA
+'2 = Update/Delete QA
+v.Global.iModule.Declare
+'0 = Null
+'1 = Inv
+'2 = PO Lines
+
+v.Global.sPart.Declare
+v.Global.sPO.Declare
+v.Global.sPoLines.Declare
+v.Global.bPartQAExist.Declare
+v.Global.bPrePrintExist.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+v.Local.bIsInGroup.Declare
+v.Local.s17CharHolder.Declare
+f.Intrinsic.Control.CallSub(LoadIcon)
+f.Intrinsic.Control.SelectCase(V.Caller.Hook)
+	'Pop Hook for Inventory.  Sets the Script 1 button text
+	f.Intrinsic.Control.Case(10120)
+		V.Passed.000068.Set("Quality Req")
+		f.Intrinsic.Control.End
+'	'Pop Hook for Order Entry.  Sets the Script 1 button text
+'	f.Intrinsic.Control.Case(12010)
+'		V.Passed.000162.Set("Quality Req")
+'		f.Intrinsic.Control.End
+'	'Pop Hook for Quick Quote.  Sets the Script 1 button
+'	f.Intrinsic.Control.Case(10260)
+'		V.Passed.000201.Set("Quality Req")
+'		f.Intrinsic.Control.End
+'	'Pop Hook for Order Entry Header. Sets Script 1 button
+'	f.Intrinsic.Control.Case(11560)
+'		V.Passed.000201.Set("QA Lines")
+'		f.Intrinsic.Control.End
+	'Inventory Script Button hook
+	f.Intrinsic.Control.Case(10210)
+		f.Intrinsic.String.RPad(v.Passed.000007, " ", 17, v.Local.s17CharHolder)
+		f.Intrinsic.String.Build("{0}{1}", v.Local.s17CharHolder, v.Passed.000008, v.Global.sPart)
+		'v.Global.sPart.Set(v.Passed.000007)
+		v.Global.iModule.Set(1)
+		gui.F_QA_Req.txtPO.Visible(false)
+		gui.F_QA_Req.lblPO.Visible(false)
+		gui.F_QA_Req.txtSeq.Visible(false)
+		gui.F_QA_Req.lblPOLineNo.Visible(false)
+		f.Intrinsic.Control.CallSub(loadQAReq)
+		f.Intrinsic.Control.ExitSub
+	'Pop Hook for Purchase Order Lines. Sets Script 1 button
+	f.Intrinsic.Control.Case(17050)
+		v.Passed.000097.Set("Quality Req")
+		f.Intrinsic.Control.End
+	'Calls for the program on script 1, for purchaser order lines
+	f.Intrinsic.Control.Case(17160)
+		v.Global.iModule.Set(2)
+		f.Intrinsic.String.RPad(v.Passed.000008, " ", 17, v.Local.s17CharHolder)
+		f.Intrinsic.String.Build("{0}{1}", v.Local.s17CharHolder, v.Passed.000009, v.Global.sPart)
+		'v.Global.sPart.Set(v.Passed.000008)
+		v.Global.sPO.Set(v.Passed.008002)
+		v.Global.sPoLines.Set(v.Passed.008001)
+		f.Intrinsic.Control.CallSub(loadQAReq)
+		gui.F_QA_Req.txtPO.Visible(true)
+		gui.F_QA_Req.txtPO.Text(v.Global.sPO)
+		gui.F_QA_Req.lblPO.Visible(true)
+		gui.F_QA_Req.txtSeq.Visible(true)
+		gui.F_QA_Req.txtSeq.Text(v.Global.sPoLines)
+		gui.F_QA_Req.lblPOLineNo.Visible(true)
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.Case(16913)
+		f.Intrinsic.Control.CallSub(checkIfPoLinesExist)
+		'f.Intrinsic.Control.CallSub(updatePRT_PO)
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.Case(10170)
+		f.Intrinsic.Control.If(v.Caller.Switches, =, "N")
+			f.Intrinsic.Control.CallSub(CustomFolderPreCheck)
+			f.Intrinsic.Control.CallSub(addAllQAInv)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.CaseElse
+		'if it is not call from any of the hooks it will open QA Maintenence.
+		f.Global.Security.IsInGroup(v.Caller.User, "QA", v.Caller.CompanyCode, v.Local.bIsInGroup)
+		f.Intrinsic.Control.If(v.Local.bIsInGroup)
+			gui.F_QA_Maintenance.frameInput.Enabled(False)
+			gui.F_QA_Maintenance.frameInput.Caption("Input QAs")
+			f.Intrinsic.Control.CallSub(loadMtncDt)
+			f.Intrinsic.Control.CallSub(setMtncGvProperties)
+			gui.F_QA_Maintenance..Show
+		f.Intrinsic.Control.EndIf
+		
+f.Intrinsic.Control.EndSelect
+
+Program.Sub.Main.End
+
+Program.Sub.ErrorMsg.Start
+v.Local.sError.Declare
+'Generic Error message.
+f.Intrinsic.String.Build("Project GCG_5233_QA_Req.g2u {0}{0}Subroutine: {1}{0}Error: {2} with Description: {3}", v.Ambient.NewLine, v.Ambient.CurrentSubroutine, v.Ambient.ErrorNumber, v.Ambient.ErrorDescription, v.Local.sError)
+f.Intrinsic.UI.Msgbox(v.Local.sError)
+Program.Sub.ErrorMsg.End
+
+Program.Sub.cmdMtncDelete_Click.Start
+v.Local.sSQL.Declare
+v.Local.sQA_Code.Declare
+v.Local.sTitle.Declare
+v.Local.iRecDoc.Declare
+v.Local.sMsg.Declare
+v.Local.iMsgRet.Declare
+
+v.Local.sQA_Code.Set(v.Screen.F_QA_Maintenance!txtMtncQA_Code.Text!FieldValTrim)
+v.Local.sTitle.Set(v.Screen.F_QA_Maintenance!txtMtncTitle.Text!FieldValTrim)
+v.Local.iRecDoc.Set(v.Screen.F_QA_Maintenance!chkMtncReqDoc.Value)
+'checking if the status is uopdate/delete
+f.Intrinsic.Control.If(v.Global.iStatus, =, 2)
+	'building delete statement.
+	f.Intrinsic.String.Build("delete from GCG_5233_QA_Req where QA_Code = '{0}'", v.Local.sQA_Code, v.Local.sSQL)
+	'asking for confirmation before deleting
+	f.Intrinsic.String.Build("Do you want to delete QA Requirement: {0}", v.Local.sQA_Code, v.Local.sMsg)
+	f.Intrinsic.UI.MsgBox("Delete QA Requirement", v.Local.sMsg, 4, v.Local.iMsgRet)
+	'if confirmation is given, delete using delete statement
+	f.Intrinsic.Control.If(v.Local.iMsgRet, =, 6)
+		f.Intrinsic.Control.Try
+			f.ODBC.Connection!con.OpenCompanyConnection
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.ODBC.Connection!con.Close
+		f.Intrinsic.Control.Catch
+			f.Intrinsic.Control.CallSub(ErrorMsg)
+		f.Intrinsic.Control.EndTry
+		
+		'setting screen back to initial status.
+		f.Intrinsic.Control.CallSub(loadMtncDt)	
+		f.Intrinsic.Control.CallSub(setMtncGvProperties)
+		f.Intrinsic.Control.CallSub(clearMtncInput)
+		gui.F_QA_Maintenance.frameInput.Enabled(False)
+		gui.F_QA_Maintenance.frameInput.Caption("Input QAs")
+		v.Global.iStatus.Set(0)
+		gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+		gui.F_QA_Maintenance.cmdMtncSave.Enabled(False)
+	f.Intrinsic.Control.EndIf	
+f.Intrinsic.Control.EndIf
+Program.Sub.cmdMtncDelete_Click.End
+
+Program.Sub.cmdMtncNew_Click.Start
+'New button allows users to input information for a new QA, also sets the controls and status set for a new QA.
+gui.F_QA_Maintenance.frameInput.Enabled(True)
+gui.F_QA_Maintenance.frameInput.Caption("New QA")
+gui.F_QA_Maintenance.txtMtncQA_Code.Text("")
+gui.F_QA_Maintenance.txtMtncTitle.Text("")
+gui.F_QA_Maintenance.chkMtncReqDoc.Value(0)
+v.Global.iStatus.Set(1)
+gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+gui.F_QA_Maintenance.cmdMtncSave.Enabled(True)
+gui.F_QA_Maintenance.txtMtncQA_Code.Enabled(True)
+gui.F_QA_Maintenance.txtMtncQA_Code.SetFocus
+Program.Sub.cmdMtncNew_Click.End
+
+Program.Sub.cmdMtncSave_Click.Start
+v.Local.sSQL.Declare
+v.Local.sQA_Code.Declare
+v.Local.sTitle.Declare
+v.Local.iRecDoc.Declare
+'oulling information from screen into local variables
+v.Local.sQA_Code.Set(v.Screen.F_QA_Maintenance!txtMtncQA_Code.Text!FieldValTrim)
+v.Local.sTitle.Set(v.Screen.F_QA_Maintenance!txtMtncTitle.Text!FieldValTrim)
+v.Local.iRecDoc.Set(v.Screen.F_QA_Maintenance!chkMtncReqDoc.Value)
+
+'checks if the QA code is empty, if it is the programs returns to starting status
+f.Intrinsic.Control.If(v.Screen.F_QA_Maintenance!txtMtncQA_Code.Text!fieldValtrim, =, "")
+	gui.F_QA_Maintenance.frameInput.Enabled(False)
+	gui.F_QA_Maintenance.frameInput.Caption("Input QAs")
+	gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+	gui.F_QA_Maintenance.cmdMtncSave.Enabled(False)
+	f.Intrinsic.Control.CallSub(clearMtncInput)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+'checks status, 1 means is a new QA code
+f.Intrinsic.Control.If(v.Global.iStatus, =, 1)
+	f.Intrinsic.Control.Try
+		f.ODBC.Connection!con.OpenCompanyConnection
+			f.Intrinsic.String.Build("Select * From GCG_5233_QA_Req where QA_Code = '{0}'", v.Local.sQA_Code, v.Local.sSQL)
+			f.Data.DataTable.CreateFromSQL("existsDT", "con", v.Local.sSQL)
+			'checks if the QA code already exists
+			f.Intrinsic.Control.If(v.DataTable.existsDT.RowCount, >, 0)
+				f.Intrinsic.UI.Msgbox("QA Code exists, please select from the list to update.")
+			f.Intrinsic.Control.Else
+			'saves the new QA code into the table.
+				f.Intrinsic.String.Build("insert into GCG_5233_QA_Req (QA_Code, Title, ReqDoc) values ('{0}', '{1}', '{2}')", v.Local.sQA_Code, v.Local.sTitle, v.Local.iRecDoc, v.Local.sSQL)
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.Intrinsic.Control.EndIf	
+			f.Data.DataTable.Close("existsDT")
+		f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.Catch
+		f.Intrinsic.Control.CallSub(ErrorMsg)
+	f.Intrinsic.Control.EndTry
+	
+	'sets the screen in starting mode.
+	f.Intrinsic.Control.CallSub(loadMtncDt)	
+	f.Intrinsic.Control.CallSub(setMtncGvProperties)
+	f.Intrinsic.Control.CallSub(clearMtncInput)
+	gui.F_QA_Maintenance.frameInput.Enabled(False)
+	gui.F_QA_Maintenance.frameInput.Caption("Input QAs")
+	gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+	gui.F_QA_Maintenance.cmdMtncSave.Enabled(False)
+	v.Global.iStatus.Set(0)
+f.Intrinsic.Control.ElseIf(v.Global.iStatus, =, 2)
+	'update the QA code.
+	f.Intrinsic.String.Build("update GCG_5233_QA_Req set Title = '{0}', ReqDoc = '{1}' where QA_Code = '{2}'", v.Local.sTitle, v.Local.iRecDoc, v.Local.sQA_Code, v.Local.sSQL)	
+	f.Intrinsic.Control.Try
+		f.ODBC.Connection!con.OpenCompanyConnection
+			f.ODBC.Connection!con.Execute(v.Local.sSQL)
+		f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.Catch
+		f.Intrinsic.Control.CallSub(ErrorMsg)
+	f.Intrinsic.Control.EndTry
+	
+	'sets the screen in starting mode.	
+	f.Intrinsic.Control.CallSub(loadMtncDt)	
+	f.Intrinsic.Control.CallSub(setMtncGvProperties)
+	f.Intrinsic.Control.CallSub(clearMtncInput)
+	gui.F_QA_Maintenance.frameInput.Enabled(False)
+	gui.F_QA_Maintenance.frameInput.Caption("Input QAs")
+	gui.F_QA_Maintenance.cmdMtncDelete.Enabled(False)
+	gui.F_QA_Maintenance.cmdMtncSave.Enabled(False)
+	v.Global.iStatus.Set(0)
+f.Intrinsic.Control.EndIf
+Program.Sub.cmdMtncSave_Click.End
+
+Program.Sub.loadMtncDt.Start
+'loads all the QAs
+f.Intrinsic.Control.Try
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("qaMtncDT", "con", "Select * From GCG_5233_QA_Req Order by QA_Code Asc")
+		gui.F_QA_Maintenance.GsGcMtncAllQAs.AddGridviewFromDatatable("qaMtncGV", "qaMtncDT")
+		gui.F_QA_Maintenance.GsGcMtncAllQAs.MainView("qaMtncGV")
+	f.ODBC.Connection!con.Close
+f.Intrinsic.Control.Catch
+	f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.CallSub(ErrorMsg)
+f.Intrinsic.Control.EndTry
+Program.Sub.loadMtncDt.End
+
+Program.Sub.GsGcMtncAllQAs_RowClick.Start
+v.Local.sQA.Declare
+v.Local.sTitle.Declare
+v.Local.bReqDoc.Declare
+
+'gets the information from the row clicked, and sets the screen status to update.
+gui.F_QA_Maintenance.frameInput.Enabled(True)
+gui.F_QA_Maintenance.frameInput.Caption("Update/Delete QA")
+gui.F_QA_Maintenance.txtMtncQA_Code.Enabled(False)
+
+gui.F_QA_Maintenance.GsGcMtncAllQAs.GetCellValue("qaMtncGV", 0, v.Args.rowIndex, v.Local.sQA)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.GetCellValue("qaMtncGV", 1, v.Args.rowIndex, v.Local.sTitle)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.GetCellValue("qaMtncGV", 2, v.Args.rowIndex, v.Local.bReqDoc)
+
+gui.F_QA_Maintenance.txtMtncQA_Code.Text(v.Local.sQA)
+gui.F_QA_Maintenance.txtMtncTitle.Text(v.Local.sTitle)
+gui.F_QA_Maintenance.chkMtncReqDoc.Value(v.Local.bReqDoc)
+gui.F_QA_Maintenance.cmdMtncDelete.Enabled(True)
+gui.F_QA_Maintenance.cmdMtncSave.Enabled(True)
+v.Global.iStatus.Set(2)
+gui.F_QA_Maintenance.txtMtncTitle.SetFocus
+Program.Sub.GsGcMtncAllQAs_RowClick.End
+
+Program.Sub.clearMtncInput.Start
+'clears all the text inputs.
+gui.F_QA_Maintenance.txtMtncQA_Code.Text("")
+gui.F_QA_Maintenance.txtMtncTitle.Text("")
+gui.F_QA_Maintenance.chkMtncReqDoc.Value(0)
+Program.Sub.clearMtncInput.End
+
+Program.Sub.setMtncGvProperties.Start
+'sets all the grid view properties for maintence screen.
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "QA_Code", "Caption", "QA Requirement")
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "Title", "Caption", "Description")
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "ReqDoc", "Caption", "Requires Documents")
+
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "QA_Code", "HeaderFontBold", true)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "Title", "HeaderFontBold", true)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "ReqDoc", "HeaderFontBold", true)
+
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "QA_Code", "AllowEdit", false)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "Title", "AllowEdit", false)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "ReqDoc", "AllowEdit", false)
+
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "QA_Code", "ReadOnly", true)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "Title", "ReadOnly", true)
+gui.F_QA_Maintenance.GsGcMtncAllQAs.SetColumnProperty("qaMtncGV", "ReqDoc", "ReadOnly", true)
+
+gui.F_QA_Maintenance.GsGcMtncAllQAs.BestFitColumns("qaMtncGV")
+Program.Sub.setMtncGvProperties.End
+
+Program.Sub.F_QA_Maintenance_UnLoad.Start
+f.Intrinsic.Control.End
+Program.Sub.F_QA_Maintenance_UnLoad.End
+
+Program.Sub.loadQAReq.Start
+'loads the req form
+gui.F_QA_Req.txtPart.Text(v.Global.sPart)
+f.Intrinsic.Control.CallSub(loadQAReqDt)
+f.Intrinsic.Control.CallSub(setQaRecGvProperties)
+gui.F_QA_Req..Show
+f.Intrinsic.Control.CallSub(loadSelected)
+Program.Sub.loadQAReq.End
+
+Program.Sub.loadQAReqDt.Start
+'loads the datatable with QAs, descriptions and adds a selected column
+f.Intrinsic.Control.Try
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("qaRecDT", "con", "Select QA_Code, Title From GCG_5233_QA_Req Order by QA_Code Asc", true)
+		f.Data.DataTable.AddColumn("qaRecDT", "Selected", "Boolean", False)
+		gui.F_QA_Req.GsGcRecAllQAs.AddGridviewFromDatatable("qaRecGV", "qaRecDT")
+		gui.F_QA_Req.GsGcRecAllQAs.MainView("qaRecGV")
+	f.ODBC.Connection!con.Close
+f.Intrinsic.Control.Catch
+	f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.CallSub(ErrorMsg)
+f.Intrinsic.Control.EndTry
+Program.Sub.loadQAReqDt.End
+
+Program.Sub.F_QA_Req_UnLoad.Start
+f.Intrinsic.Control.End
+Program.Sub.F_QA_Req_UnLoad.End
+
+Program.Sub.loadSelected.Start
+v.Local.sSQL.Declare
+v.Local.sQAs.Declare
+v.Local.iCnt.Declare
+v.Local.sFilter.Declare
+v.Local.iUbound.Declare
+'loads selected QAs depending on the module, 1 is from Inventory and only takes into account part number.
+f.Intrinsic.Control.Try
+	f.Intrinsic.String.Build("Select * From GCG_5233_QA_Inv where Part='{0}'", v.Global.sPart, v.Local.sSQL)
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("qaInvRecDT", "con", v.Local.sSQL)
+	f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.If(v.DataTable.qaInvRecDT.RowCount, =, 1)
+		v.Global.bPartQAExist.Set(true)
+		f.Intrinsic.String.Split(v.DataTable.qaInvRecDT(0).QA_req!FieldValTrim, ",", v.Local.sQAs)
+		v.Local.sQAs.RedimPreserve(0, v.Local.sQAs.UBound)
+		f.Intrinsic.Math.Sub(v.Local.sQAs.UBound, 1, v.Local.iUbound)
+		f.Intrinsic.Control.For(v.Local.iCnt, 0, v.Local.iUbound, 1)
+			f.Intrinsic.String.Build("QA_Code = '{0}'", v.Local.sQAs(v.Local.iCnt), v.Local.sFilter)
+			f.Data.DataView.Create("qaRecDT", "qaDv", 22, v.Local.sFilter, "QA_Code")
+				f.Intrinsic.Control.If(v.DataView.qaRecDT!qaDV.RowCount, =, 1)
+					f.Data.DataView.SetValue("qaRecDT", "qaDv", 0,"Selected", true)
+				f.Intrinsic.Control.EndIf
+			f.Data.DataView.Close("qaRecDT", "qaDv")
+		f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Intrinsic.Control.EndIf
+	f.Data.DataTable.Close("qaInvRecDT")
+'loads selected QAs depending on the module, 2 is from PO Lines and only takes into account part number, po number, po lines.
+	f.Intrinsic.Control.If(v.Global.iModule, =, 2)	
+		v.Global.bPartQAExist.Set(false)
+		f.Intrinsic.String.Build("Select * From GCG_5233_QA_PO_Ln where Part = '{0}' and Purchase_No = '{1}' and Po_Lines = '{2}'", v.Global.sPart, v.Global.sPO, v.Global.sPoLines, v.Local.sSQL)
+		f.ODBC.Connection!con.OpenCompanyConnection
+			f.Data.DataTable.CreateFromSQL("qaPoRecDT", "con", v.Local.sSQL)
+		f.ODBC.Connection!con.Close
+		f.Intrinsic.Control.If(v.DataTable.qaPoRecDT.RowCount, =, 1)
+			v.Global.bPartQAExist.Set(true)
+			'if the po line exists, the program
+			f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.qaRecDT.RowCount--, 1)
+				f.Data.DataTable.SetValue("qaRecDT",v.Local.iCnt, "Selected", false)
+			f.Intrinsic.Control.Next(v.Local.iCnt)
+			f.Intrinsic.String.Split(v.DataTable.qaPoRecDT(0).QA_Req!FieldValTrim, ",", v.Local.sQAs)
+			v.Local.sQAs.RedimPreserve(0, v.Local.sQAs.UBound)
+			'f.Intrinsic.Math.Sub(v.Local.sQAs.UBound, 1, v.Local.iUbound)
+			v.Local.iUbound.Set(v.Local.sQAs.UBound)
+			f.Intrinsic.Control.For(v.Local.iCnt, 0, v.Local.iUbound, 1)
+				f.Intrinsic.String.Build("QA_Code = '{0}'", v.Local.sQAs(v.Local.iCnt), v.Local.sFilter)
+				f.Data.DataView.Create("qaRecDT", "qaDv", 22, v.Local.sFilter, "QA_Code")
+					f.Intrinsic.Control.If(v.DataView.qaRecDT!qaDV.RowCount, =, 1)
+						f.Data.DataView.SetValue("qaRecDT", "qaDv", 0,"Selected", true)
+					f.Intrinsic.Control.EndIf
+				f.Data.DataView.Close("qaRecDT", "qaDv")
+			f.Intrinsic.Control.Next(v.Local.iCnt)
+		f.Intrinsic.Control.EndIf
+		f.Data.DataTable.Close("qaPoRecDT")
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(ErrorMsg)
+f.Intrinsic.Control.EndTry
+Program.Sub.loadSelected.End
+
+Program.Sub.setQaRecGvProperties.Start
+'sets grid properties for QA requirements
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "QA_Code", "Caption", "QA Requirement")
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Title", "Caption", "Description")
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Selected", "Caption", "Selected")
+
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "QA_Code", "HeaderFontBold", true)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Title", "HeaderFontBold", true)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Selected", "HeaderFontBold", true)
+
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "QA_Code", "AllowEdit", false)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Title", "AllowEdit", false)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Selected", "AllowEdit", true)
+
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "QA_Code", "ReadOnly", true)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Title", "ReadOnly", true)
+gui.F_QA_Req.GsGcRecAllQAs.SetColumnProperty("qaRecGV", "Selected", "ReadOnly", false)
+
+gui.F_QA_Req.GsGcRecAllQAs.BestFitColumns("qaRecGV")
+Program.Sub.setQaRecGvProperties.End
+
+Program.Sub.cmdQA_Rec_Save_Click.Start
+v.Local.sQA.Declare
+v.Local.iCnt.Declare
+v.Local.sSQL.Declare
+'builds string with all the QAs 
+
+f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.qaRecDT.RowCount--, 1)
+	f.Intrinsic.Control.If(v.DataTable.qaRecDT(v.Local.iCnt).Selected!FieldVal)
+		f.Intrinsic.String.Build("{0}{1},", v.Local.sQA, v.DataTable.qaRecDT(v.Local.iCnt).QA_Code!FieldValTrim, v.Local.sQA)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.iCnt)
+
+f.Intrinsic.Control.Try
+	f.ODBC.Connection!con.OpenCompanyConnection
+	'checks if the part exists, if so the program updates the proper QA depending of the module, 1 for inv and 2 for Po Line
+		f.Intrinsic.Control.If(v.Global.bPartQAExist)
+			f.Intrinsic.Control.If(v.Global.iModule, =, 1)
+				f.Intrinsic.String.Build("update GCG_5233_QA_Inv set QA_Req = '{0}' where Part = '{1}'", v.Local.sQA, v.Screen.F_QA_Req!txtPart.Text, v.Local.sSQL)
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.Intrinsic.Control.ElseIf(v.Global.iModule, =, 2)
+				f.Intrinsic.String.Build("update GCG_5233_QA_PO_Ln set QA_Req = '{0}' where Part = '{1}' and Purchase_No = '{2}' and Po_Lines = '{3}'",v.Local.sQA, v.Global.sPart, v.Global.sPO, v.Global.sPoLines, v.Local.sSQL)
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.Else
+	'checks if the part exists, if it doesn't the program inserts the proper QA depending of the module, 1 for inv and 2 for Po Line
+			f.Intrinsic.Control.If(v.Global.iModule, =, 1)
+				f.Intrinsic.String.Build("insert into GCG_5233_QA_Inv (Part, QA_Req)  values('{0}', '{1}')", v.Screen.F_QA_Req!txtPart.Text, v.Local.sQA, v.Local.sSQL)
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.Intrinsic.Control.ElseIf(v.Global.iModule, =, 2)
+				f.Intrinsic.String.Build("insert into GCG_5233_QA_PO_Ln (Part, Purchase_No, Po_Lines, QA_Req)  values('{0}', '{1}', '{2}', '{3}')", v.Screen.F_QA_Req!txtPart.Text,v.Global.sPO, v.Global.sPoLines, v.Local.sQA, v.Local.sSQL)
+				f.ODBC.Connection!con.Execute(v.Local.sSQL)
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.EndIf		
+	f.ODBC.Connection!con.Close
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(ErrorMsg)
+f.Intrinsic.Control.EndTry
+f.Intrinsic.Control.CallSub(loadSelected)
+f.Intrinsic.Control.End
+Program.Sub.cmdQA_Rec_Save_Click.End
+
+Program.Sub.LoadIcon.Start
+v.Local.sIcon.Declare
+'sets the icon
+f.Intrinsic.String.Build("{0}\ART\gss2.ico", v.Caller.GlobalDir, v.Local.sIcon)
+gui.F_QA_Req..Icon(v.Local.sIcon)
+gui.F_QA_Maintenance..Icon(v.Local.sIcon)
+Program.Sub.LoadIcon.End
+
+Program.Sub.checkIfPoLinesExist.Start
+v.Local.sSQL.Declare
+v.Local.iCnt.Declare
+v.Local.iCnt2.Declare
+v.Local.sPO.Declare
+v.Local.sPoSeq.Declare
+v.Local.sQAs.Declare
+v.Local.sFilter.Declare
+v.Local.sPart.Declare
+v.Local.fPOSeq.Declare
+v.Local.sPoSeqNew.Declare
+v.Local.fMultHolder.Declare
+
+f.Intrinsic.Control.Try
+	f.Intrinsic.String.LPad(v.Passed.000008, "0", 7, v.Local.sPO)
+	f.Intrinsic.String.Build("Select * from V_PO_LINES where Purchase_Order = '{0}'", v.Local.sPO, v.Local.sSQL)
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("poLinesDT", "con", v.Local.sSQL)
+	f.ODBC.Connection!con.Close
+
+	f.Intrinsic.String.Build("Select * from GCG_5233_QA_PO_Ln where Purchase_No = '{0}'", v.Local.sPO, v.Local.sSQL)
+	f.ODBC.Connection!con.OpenCompanyConnection
+		f.Data.DataTable.CreateFromSQL("prePrintPOLinesDT", "con", v.Local.sSQL)
+	f.ODBC.Connection!con.Close
+	
+	f.Intrinsic.Control.If(v.DataTable.prePrintPOLinesDT.RowCount, >=, 1)
+		f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.POLinesDT.RowCount--, 1)
+			v.Local.sPO.Set(v.DataTable.POLinesDT(v.Local.iCnt).Purchase_Order!FieldValTrim)
+			v.Local.sPoSeq.Set(v.DataTable.POLinesDT(v.Local.iCnt).Record_No!FieldValTrim)
+			
+			f.Intrinsic.String.Build("Purchase_no = '{0}' and Po_Lines = '{1}'", v.Local.sPO, v.Local.sPoSeq, v.Local.sFilter)
+			f.Data.DataView.Create("prePrintPOLinesDT", "qaPrintDV", 22, v.Local.sFilter, "Po_Lines")
+		
+			f.Intrinsic.Control.If(v.DataView.prePrintPOLinesDT!qaPrintDV.RowCount, >, 0)
+				v.Local.sQAs.Set(v.DataView.prePrintPOLinesDT!qaPrintDV(0).QA_Req!FieldValTrim)
+			f.Intrinsic.Control.EndIf
+			
+			f.Data.DataView.Close("prePrintPOLinesDT", "qaPrintDV")
+					
+			f.Intrinsic.Math.Mult(v.Local.iCnt, 3, v.Local.fMultHolder)
+			f.Intrinsic.Math.Add(v.Local.fMultHolder, 2, v.Local.fPOSeq)
+			f.Intrinsic.String.LPad(v.Local.fPOSeq, "0", 6, v.Local.sPoSeqNew)
+
+			f.Intrinsic.String.Build("Select * from comments_po where terminal_no = '{0}' and rptid = '002801' and po_no = '{1}' and Key_seq = '{2}'", v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeqNew, v.Local.sSQL)
+			
+			f.ODBC.Connection!con.OpenCompanyConnection
+				f.Data.DataTable.CreateFromSQL("prePrintCommentsDT", "con", v.Local.sSQL)
+			f.ODBC.Connection!con.Close
+			
+			f.Intrinsic.Control.If(v.DataTable.prePrintCommentsDT.RowCount, =, 0)
+				f.Intrinsic.String.LPad(v.Local.fPOSeq, "0", 6, v.Local.sPoSeqNew)
+				f.Intrinsic.String.Build("Insert into comments_po (terminal_no, rptid, po_no, copy_no, key_seq, comments) values ('{0}', '002801', '{1}', '0', '{2}', '{3}')", v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeqNew, v.Local.sQAs, v.Local.sSQL)
+				f.ODBC.Connection!con.OpenCompanyConnection
+					f.ODBC.Connection!con.Execute(v.Local.sSQL)
+				f.ODBC.Connection!con.Close
+			f.Intrinsic.Control.Else
+				f.Intrinsic.Control.For(v.Local.iCnt2, 0, v.DataTable.prePrintCommentsDT.RowCount--, 1)
+					f.Intrinsic.String.Build("Update comments_po set comments = '{0}' where terminal_no = '{1}' and rptid = '002801' and po_no = '{2}' and key_seq = '{3}'", v.Local.sQAs, v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeqNew, v.Local.sSQL)
+					f.ODBC.Connection!con.OpenCompanyConnection
+						f.ODBC.Connection!con.Execute(v.Local.sSQL)
+					f.ODBC.Connection!con.Close
+				f.Intrinsic.Control.Next(v.Local.iCnt2)
+			f.Intrinsic.Control.EndIf
+			f.Data.DataTable.Close("prePrintCommentsDT")
+		f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Intrinsic.Control.Else
+		f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.poLinesDT.RowCount--, 0)
+			v.Local.sPart.Set(v.DataTable.poLinesDT(v.Local.iCnt).Part!FieldValTrim)
+			f.Intrinsic.String.Build("Select  * from GCG_5233_QA_Inv where part = '{0}'", v.Local.sPart, v.Local.sSQL)
+			f.ODBC.Connection!con.OpenCompanyConnection
+				f.Data.DataTable.CreateFromSQL("invQADT", "con", v.Local.sSQL)
+			f.ODBC.Connection!con.Close
+			f.Intrinsic.Control.If(v.DataTable.invQADT.RowCount, =, 1)
+				f.Intrinsic.String.Build("Select * from comments_po where terminal_no = '{0}' and rptid = '002801' and po_no = '{1}' and key_seq = '{2}'", v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeq, v.Local.sSQL)
+			
+				f.ODBC.Connection!con.OpenCompanyConnection
+					f.Data.DataTable.CreateFromSQL("prePrintCommentsDT", "con", v.Local.sSQL)
+				f.ODBC.Connection!con.Close
+				
+				f.Intrinsic.Math.Mult(v.Local.iCnt, 3, v.Local.fMultHolder)
+				f.Intrinsic.Math.Add(v.Local.fMultHolder, 2, v.Local.fPOSeq)
+				f.Intrinsic.String.LPad(v.Local.fPOSeq, "0", 6, v.Local.sPoSeqNew)
+
+				f.Intrinsic.Control.If(v.DataTable.prePrintCommentsDT.RowCount, =, 0)		
+					f.Intrinsic.String.Build("Insert into comments_po (terminal_no, rptid, po_no, copy_no, key_seq, comments) values ('{0}', '002801', '{1}', '0', '{2}', '{3}')", v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeqNew, v.Local.sQAs, v.Local.sSQL)
+					f.ODBC.Connection!con.OpenCompanyConnection
+						f.ODBC.Connection!con.Execute(v.Local.sSQL)
+					f.ODBC.Connection!con.Close
+				f.Intrinsic.Control.Else
+					f.Intrinsic.Control.For(v.Local.iCnt2, 0, v.DataTable.prePrintCommentsDT.RowCount--, 1)			
+						f.Intrinsic.String.Build("Update comments_po set comments = '{0}' where terminal_no = '{1}' and rptid = '002801' and po_no = '{2}' and key_seq = '{3}'", v.Local.sQAs, v.Caller.Terminal, v.Local.sPO, v.Local.sPoSeqNew, v.Local.sSQL)
+						f.ODBC.Connection!con.OpenCompanyConnection
+							f.ODBC.Connection!con.Execute(v.Local.sSQL)
+						f.ODBC.Connection!con.Close
+					f.Intrinsic.Control.Next(v.Local.iCnt2)
+				f.Intrinsic.Control.EndIf
+				f.Data.DataTable.Close("prePrintCommentsDT")
+			f.Intrinsic.Control.EndIf
+			f.Data.DataTable.Close("invQADT")
+		f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.For(v.Local.iCnt, 0, v.DataTable.poLinesDT.RowCount--, 1)
+		f.ODBC.Connection!con.OpenCompanyConnection
+			f.Intrinsic.String.Build("Select * from GCG_5233_QA_PO_Ln where Part = '{0}'", v.DataTable.poLinesDT(v.Local.iCnt).Part!FieldValTrim, v.Local.sSQL)
+			f.Data.DataTable.CreateFromSQL("poLineCheckDT", "con", v.Local.sSQL)
+			f.Intrinsic.Control.If(v.DataTable.poLineCheckDT.RowCount, =, 0)
+				
+			f.Intrinsic.Control.EndIf
+		f.ODBC.Connection!con.Close
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Data.DataTable.Close("poLinesDT")
+
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(ErrorMsg)
+f.Intrinsic.Control.EndTry
+Program.Sub.checkIfPoLinesExist.End
+
+Program.Sub.addAllQAInv.Start
+v.Local.sFile.Declare
+v.Local.bExist.Declare
+v.Local.sFolder.Declare
+v.Local.sQA.Declare
+v.Local.sPart.Declare
+v.Local.sSQL.Declare
+
+f.Intrinsic.String.Build("{0}\CUSTOM\GCG_5233",v.Caller.GlobalDir, v.Local.sFolder)
+
+f.Intrinsic.String.Build("{0}\ALLQA.txt", v.Local.sFolder, v.Local.sFile)
+f.Intrinsic.File.Exists(v.Local.sFile, v.Local.bExist)
+
+f.Intrinsic.Control.If(v.Local.bExist)
+	f.Intrinsic.File.File2String(v.Local.sFile, v.Local.sQA)
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.String.LPad(v.Passed.000007, " ", v.Local.sPart)
+f.Intrinsic.String.Build("{0}{1}", v.Local.sPart, v.Passed.000008, v.Local.sPart)
+
+f.Intrinsic.String.Build("insert into GCG_5233_QA_Inv (Part, QA_Req)  values('{0}', '{1}')", v.Local.sPart, v.Local.sQA, v.Local.sSQL)
+
+f.ODBC.Connection!con.OpenCompanyConnection
+	f.ODBC.Connection!con.Execute(v.Local.sSQL)
+f.ODBC.Connection!con.Close
+
+Program.Sub.addAllQAInv.End
+
+Program.Sub.CustomFolderPreCheck.Start
+v.Local.sFolder.Declare
+v.Local.bExist.Declare
+
+'Checks if the Custom Folder Exists
+f.Intrinsic.String.Build("{0}\CUSTOM", v.Caller.GlobalDir, v.Local.sFolder)
+f.Intrinsic.File.DirExists(v.Local.sFolder, v.Local.bExist)
+
+'If the folder doesn't exists, it creates it
+f.Intrinsic.Control.If(v.Local.bExist, =, false)
+	f.Intrinsic.File.CreateDir(v.Local.sFolder)
+f.Intrinsic.Control.EndIf
+
+'Checks if this particutlar project Folder Exists, in this case Training but it should be the ARC project ID
+f.Intrinsic.String.Build("{0}\CUSTOM\GCG_5233",v.Caller.GlobalDir, v.Local.sFolder)
+f.Intrinsic.File.DirExists(v.Local.sFolder, v.Local.bExist)
+
+'If the folder doesn't exists, it creates it
+f.Intrinsic.Control.If(v.Local.bExist, =, false)
+	f.Intrinsic.File.CreateDir(v.Local.sFolder)
+f.Intrinsic.Control.EndIf
+Program.Sub.CustomFolderPreCheck.End
